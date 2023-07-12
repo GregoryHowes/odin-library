@@ -17,11 +17,39 @@
             <button type="button" class="button">Add Book</button>
         </div>
         <div class="books">
-
+            <div class="card">
+                <p class="book-title">1984</p>
+                <p class="book-author">George Orwell</p>
+                <p class="book-date">1949</p>
+            </div>
+            <div class="card">
+                <p class="book-title">Romeo and Juliet</p>
+                <p class="book-author">William Shakepeare</p>
+                <p class="book-date">1597</p>
+            </div>
         </div>
         <div class="footer">
             <p>by Greg Howes 2023</p>
         </div>
     </div>
+    <!--HIDDEN MODAL FOR ADDING BOOKS-->
+    <!--Why don't I do things the nice easy way?!?-->
+    <section class="modal hidden">
+        <div class="flex">
+            <img src="" width="50px" height="50px" alt="user" />
+            <button class="btn-close">⨉</button>
+          </div>
+          <div>
+            <h3>Add new book</h3>
+            <p>
+              This is a dummy newsletter form so don't bother trying to test it. Not
+              that I expect you to, anyways. :)
+            </p>
+          </div>
+        
+          <input type="email" id="email" placeholder="brendaneich@js.com" />
+          <button class="btn">Submit</button>    
+    </section>
+    <div class="overlay hidden"></div>
 </body>
 </html>
