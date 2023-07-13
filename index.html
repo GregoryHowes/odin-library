@@ -51,19 +51,27 @@
     <div class="modal-container">
         <section class="modal hidden">
             <div class="flex">
-                <img src="" width="50px" height="50px" alt="user" />
+                <h3>Add new book</h3>
+                
                 <button class="btn-close">⨉</button>
             </div>
             <div>
-                <h3>Add new book</h3>
-                <p>
-                This is a dummy newsletter form so don't bother trying to test it. Not
-                that I expect you to, anyways. :)
-                </p>
+                <p>Enter the new book details</p>
             </div>
             
-            <input type="email" id="email" placeholder="brendaneich@js.com" />
+            <input type="text" id="booktitle" placeholder="Book Title, e.g. War and Peace" />
+            <input type="text" id="bookauthor" placeholder="Author, e.g. Leo Tolstoy" />
+            <input type="number" id="bookpages" placeholder="Number of pages, e.g. 1225" />
+            <input type="number" id="bookdate" placeholder="Year of Publication, e.g. 1867" />
+            <label for="readtoggle">Have you read this book?</label>
+            <label class="switch">
+                <input type="checkbox" value="readtoggle">
+                <span class="slider round"></span>
+              </label>
+              
+            
             <button class="btn">Submit</button>    
+            
         </section>
     </div>
     <div class="overlay hidden"></div>
