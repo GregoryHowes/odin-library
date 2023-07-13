@@ -8,7 +8,7 @@
 
 body {
     font-family: roboto, sans-serif;
-    position: relative;
+    
 }
 
 .wrapper {
@@ -71,7 +71,7 @@ button {
     border: 2px solid #e7e7e7;
     border-radius: 4px;
     padding: .5rem; 
-    height: 200px;
+    height: 220px;
     box-shadow: 2px 2px 6px 0px  rgba(0,0,0,0.3);
     display: flex;
     flex-direction: column;
@@ -130,6 +130,14 @@ button {
     margin-bottom: 0.5em;
 }
 
+.card .book-pages {
+    font-size: 1rem;
+    font-weight: 500;
+    align-self: center;
+    margin-bottom: 0.5em;
+}
+
+
 .card .book-date {
     font-size: 1rem;
     font-weight: 500;
@@ -160,6 +168,18 @@ button {
 https://www.freecodecamp.org/news/how-to-build-a-modal-with-javascript/
 */
  
+modal-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    position: relative;
+}
+
 .modal {
     display: flex;
     flex-direction: column;
@@ -170,10 +190,12 @@ https://www.freecodecamp.org/news/how-to-build-a-modal-with-javascript/
     min-height: 250px;
     position: absolute;
     top: 20%;
+    left: calc(50% - 225px) ;
     background-color: white;
     border: 1px solid #ddd;
     border-radius: 15px;
     z-index: 2;
+
   }
 
 .modal .flex {
