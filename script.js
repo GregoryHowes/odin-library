@@ -1,3 +1,7 @@
+let bookArray = [];
+const bookCards = document.querySelector(".books");
+
+//create book object
 function Book (title, author, pages, read) {
     this.title = title
     this.author = author
@@ -8,8 +12,28 @@ function Book (title, author, pages, read) {
     }
 }
 
+const theHobbit = new Book("The Hobbit", "Tolkien", 295, false);
+addBookToDisplay(theHobbit);
+//add book object to dom
+function addBookToDisplay (bookObject) {
+    const newBookCard = document.createElement("div");
+    
+}
+
+
+//add new book to show a book or two when page first opened
+bookArray.push(new Book("The Hobbit", "Tolkien", 295, false));
+
 //const theHobbit = new Book("The Hobbit", "Tolkien", 295, false);
 //console.log(theHobbit.info());
+
+const newBookButton = document.querySelector("#add-book");
+
+
+const addBook = function () {
+
+}
+newBookButton.addEventListener("click", addBook);
 
 
 //Modal stuff for adding new book
