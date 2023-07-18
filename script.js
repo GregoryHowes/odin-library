@@ -1,5 +1,8 @@
-//create array of books - probably don't need this
+//create array of books
 let bookArray = [];
+bookArray.push(new Book("The Hobbit", "Tolkien", 295, 1937, false));
+
+
 const bookCards = document.querySelector(".books");
 
 
@@ -19,10 +22,17 @@ function Book (title, author, pages, date, read) {
     this.pages = pages
     this.date = date
     this.read = read
-    this.info = function() {
-        return title + " by " + author + " " + pages + " pages, read? " + read;  
-    }
 }
+
+
+const addBooksToDomFromArray = function () {
+    console.log("Hello");
+    bookArray.forEach((book) => {
+        addBookToDisplay(book);
+    });
+}
+
+addBooksToDomFromArray();
 
 //const theHobbit = new Book("The Hobbit", "Tolkien", 295, 1937, false);
 
