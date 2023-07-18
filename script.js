@@ -1,5 +1,16 @@
+//create array of books - probably don't need this
 let bookArray = [];
 const bookCards = document.querySelector(".books");
+
+
+//fetch modal input field values
+//these will need to be validated
+const modalBookTitle = document.querySelector("#booktitle");
+const modalBookAuthor = document.querySelector("#bookauthor");
+const modalBookPages = document.querySelector("#bookpages");
+const modalBookDate = document.querySelector("#bookdate");
+const modalBookReadStatus = document.querySelector("#readtoggle");
+
 
 //create book object
 function Book (title, author, pages, date, read) {
@@ -13,8 +24,9 @@ function Book (title, author, pages, date, read) {
     }
 }
 
-const theHobbit = new Book("The Hobbit", "Tolkien", 295, 1937, false);
-addBookToDisplay(theHobbit);
+//const theHobbit = new Book("The Hobbit", "Tolkien", 295, 1937, false);
+
+
 //add book object to dom
 function addBookToDisplay (bookObject) {
 
@@ -53,8 +65,15 @@ function addBookToDisplay (bookObject) {
     const readButton = document.createElement("button");
     readButton.id = "change-status";
     readButton.classList.add("button");
-    readButton.classList.add("read");
-    readButton.innerText = "Mark as unread";
+    if (bookObject.read) {
+        readButton.classList.add("read");
+        readButton.innerText = "Mark as unread";
+    } else {
+        readButton.classList.add("unread");
+        readButton.innerText = "Mark as read";
+    }
+
+
     //add read button to book card
     newBookCard.appendChild(readButton);
 
@@ -73,17 +92,18 @@ function addBookToDisplay (bookObject) {
 }
 
 
-//add new book to show a book or two when page first opened
-bookArray.push(new Book("The Hobbit", "Tolkien", 295, false));
-
-//const theHobbit = new Book("The Hobbit", "Tolkien", 295, false);
-//console.log(theHobbit.info());
-
-const newBookButton = document.querySelector("#add-book");
+const newBookButton = document.querySelector("#submit-book");
 
 
+//add a new book using the values from the input fields
+//in the modal window
 const addBook = function () {
-
+    const newBookFromModal = new Book(modalBookTitle.value, 
+                                        modalBookAuthor.value,
+                                        modalBookPages.value,
+                                        modalBookDate.value, 
+                                        modalBookReadStatus.checked);
+    addBookToDisplay(newBookFromModal);
 }
 newBookButton.addEventListener("click", addBook);
 

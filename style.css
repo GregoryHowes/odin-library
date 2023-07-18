@@ -227,9 +227,8 @@ modal-container {
     display: inline-block;
     padding: 0.8rem 1.4rem;
     font-weight: 700;
-    background-color: black;
-    color: white;
-    border-radius: 5px;
+    color: black;
+    background-color: lightgray;
     text-align: center;
     font-size: 1em;
   }
@@ -237,6 +236,11 @@ modal-container {
   .btn-open {
     position: absolute;
     bottom: 150px;
+  }
+
+  #submit-book:hover {
+    background-color: rgb(161, 155, 155);
+    transition: 0.7s;
   }
   
   .btn-close {

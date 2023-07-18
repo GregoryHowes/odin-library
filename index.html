@@ -17,7 +17,7 @@
             <button id="add-book" type="button" class="button">Add Book</button>
         </div>
         <div class="books">
-            <div class="card">
+            <div class="card" data-book-number="0">                
                 <p class="book-title">1984</p>
                 <p class="book-author">George Orwell</p>
                 <p class="book-pages">328 pages</p>
@@ -25,7 +25,7 @@
                 <button id="change-status" type="button" class="button unread">Mark as read</button>
                 <button id="remove-book" type="button" class="button">Remove</button>
             </div>
-            <div class="card">
+            <div class="card" data-book-number="1">
                 <p class="book-title">Romeo and Juliet</p>
                 <p class="book-author">William Shakepeare</p>
                 <p class="book-pages">480 pages</p>
@@ -33,7 +33,7 @@
                 <button id="change-status" type="button" class="button read">Mark as unread</button>
                 <button id="remove-book" type="button" class="button">Remove</button>
             </div>
-            <div class="card">
+            <div class="card" data-book-number="2">
                 <p class="book-title">IQ84</p>
                 <p class="book-author">Haruki Murakami</p>
                 <p class="book-pages">928 pages</p>
@@ -62,15 +62,15 @@
             <input type="text" id="booktitle" placeholder="Book Title, e.g. War and Peace" />
             <input type="text" id="bookauthor" placeholder="Author, e.g. Leo Tolstoy" />
             <input type="number" id="bookpages" placeholder="Number of pages, e.g. 1225" />
-            <input type="number" id="bookdate" placeholder="Year of Publication, e.g. 1867" />
+            <input type="number" id="bookdate" pattern="\d{4}" maxlength="4" placeholder="Year of Publication, e.g. 1867" required/>
             <label for="readtoggle">Have you read this book?</label>
             <label class="switch">
-                <input type="checkbox" value="readtoggle">
+                <input type="checkbox" value="readtoggle" id="readtoggle">
                 <span class="slider round"></span>
               </label>
               
             
-            <button class="btn" id="add-book">Add Book</button>    
+            <button class="btn" id="submit-book">Add Book</button>    
             
         </section>
     </div>
