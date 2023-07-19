@@ -1,6 +1,29 @@
+//----------------------------------------------------------
+//Modal stuff for adding new book
+const modal = document.querySelector(".modal");
+const overlay = document.querySelector(".overlay");
+const openModalBtn = document.querySelector("#add-book");
+const closeModalBtn = document.querySelector(".btn-close");
+
+const openModal = function () {
+    modal.classList.remove("hidden");
+    overlay.classList.remove("hidden");
+}
+openModalBtn.addEventListener("click", openModal);
+
+const closeModal = function () {
+    modal.classList.add("hidden");
+    overlay.classList.add("hidden");
+};
+closeModalBtn.addEventListener("click", closeModal);
+//----------------------------------------------------------
+
 //create array of books
 let bookArray = [];
-bookArray.push(new Book("The Hobbit", "Tolkien", 295, 1937, false));
+bookArray.push(new Book("The Hobbit", " J.R. Tolkien", 295, 1937, false));
+bookArray.push(new Book("1984", "George Orwell", 328, 1949, false));
+bookArray.push(new Book("Romeo and Juliet", "William Shakepeare", 480, 1597, true));
+bookArray.push(new Book("1Q84", "Murakami Haruki", 928, 2011, true));
 
 
 const bookCards = document.querySelector(".books");
@@ -24,9 +47,8 @@ function Book (title, author, pages, date, read) {
     this.read = read
 }
 
-
+//the problem with the is that I can't find a way to access the array index of each book object
 const addBooksToDomFromArray = function () {
-    console.log("Hello");
     bookArray.forEach((book) => {
         addBookToDisplay(book);
     });
@@ -47,6 +69,9 @@ function addBookToDisplay (bookObject) {
     const newBookCard = document.createElement("div");
     newBookCard.classList.add("card");
     
+    //add data element to correspond to array position
+    newBookCard.dataset.bookNumber = bookArray.length;
+
     //add book title
     const bookTitle = document.createElement("p");
     bookTitle.classList.add("book-title");
@@ -97,6 +122,7 @@ function addBookToDisplay (bookObject) {
 
     //add the complete book card to the DOM
     bookCards.appendChild(newBookCard);
+    closeModal();
 
     
 }
@@ -118,20 +144,3 @@ const addBook = function () {
 newBookButton.addEventListener("click", addBook);
 
 
-//Modal stuff for adding new book
-const modal = document.querySelector(".modal");
-const overlay = document.querySelector(".overlay");
-const openModalBtn = document.querySelector("#add-book");
-const closeModalBtn = document.querySelector(".btn-close");
-
-const openModal = function () {
-    modal.classList.remove("hidden");
-    overlay.classList.remove("hidden");
-}
-openModalBtn.addEventListener("click", openModal);
-
-const closeModal = function () {
-    modal.classList.add("hidden");
-    overlay.classList.add("hidden");
-};
-closeModalBtn.addEventListener("click", closeModal);
