@@ -18,15 +18,40 @@ const closeModal = function () {
 closeModalBtn.addEventListener("click", closeModal);
 //----------------------------------------------------------
 
-//create array of books
-let bookArray = [];
-bookArray.push(new Book("The Hobbit", " J.R. Tolkien", 295, 1937, false));
-bookArray.push(new Book("1984", "George Orwell", 328, 1949, false));
-bookArray.push(new Book("Romeo and Juliet", "William Shakepeare", 480, 1597, true));
-bookArray.push(new Book("1Q84", "Murakami Haruki", 928, 2011, true));
+//create book object
+function Book (title, author, pages, date, read) {
+    this.title = title
+    this.author = author
+    this.pages = pages
+    this.date = date
+    this.read = read
+}
+
+//prototype function on Book object to toggle the read status
+Book.prototype.changeReadStatus = function() {
+    this.read = !this.read;
+    console.log(this.read);
+}
+
 
 
 const bookCards = document.querySelector(".books");
+
+//create array of books and add to the DOM
+let bookArray = [];
+bookArray.push(new Book("The Hobbit", " J.R. Tolkien", 295, 1937, false));
+addBookToDisplay(bookArray[0]);
+bookArray.push(new Book("1984", "George Orwell", 328, 1949, false));
+addBookToDisplay(bookArray[1]);
+bookArray.push(new Book("Romeo and Juliet", "William Shakepeare", 480, 1597, true));
+addBookToDisplay(bookArray[2]);
+bookArray.push(new Book("1Q84", "Murakami Haruki", 928, 2011, true));
+addBookToDisplay(bookArray[3]);
+
+//test changeReadStatus
+bookArray[0].changeReadStatus();
+
+
 
 
 //fetch modal input field values
@@ -38,26 +63,17 @@ const modalBookDate = document.querySelector("#bookdate");
 const modalBookReadStatus = document.querySelector("#readtoggle");
 
 
-//create book object
-function Book (title, author, pages, date, read) {
-    this.title = title
-    this.author = author
-    this.pages = pages
-    this.date = date
-    this.read = read
-}
+
 
 //the problem with the is that I can't find a way to access the array index of each book object
+//EDIT - Just need to do the old fashioned for i=0, i<len, i++ method!!
 const addBooksToDomFromArray = function () {
     bookArray.forEach((book) => {
         addBookToDisplay(book);
     });
 }
 
-addBooksToDomFromArray();
-
-//const theHobbit = new Book("The Hobbit", "Tolkien", 295, 1937, false);
-
+//addBooksToDomFromArray();
 
 //add book object to dom
 function addBookToDisplay (bookObject) {
@@ -70,7 +86,7 @@ function addBookToDisplay (bookObject) {
     newBookCard.classList.add("card");
     
     //add data element to correspond to array position
-    newBookCard.dataset.bookNumber = bookArray.length;
+    newBookCard.dataset.bookNumber = bookArray.length -1;
 
     //add book title
     const bookTitle = document.createElement("p");
@@ -100,6 +116,7 @@ function addBookToDisplay (bookObject) {
     const readButton = document.createElement("button");
     readButton.id = "change-status";
     readButton.classList.add("button");
+    readButton.classList.add("change-status");
     if (bookObject.read) {
         readButton.classList.add("read");
         readButton.innerText = "Mark as unread";
@@ -129,6 +146,51 @@ function addBookToDisplay (bookObject) {
 
 
 const newBookButton = document.querySelector("#submit-book");
+
+
+
+//Note to self:
+//I should have just has one class to indicate if a book was read, and toggle that class on and off
+//but I made the mistake to use two classes, which really just creates duplicate code
+// -- but it's a very good thing to learn and remember!
+
+const toggleReadStatus = function(book) {
+    
+    //update them dom
+    if (book.target.classList.contains("read")) {
+        //console.log("Switch to unread");
+        book.target.classList.remove("read");
+        book.target.classList.add("unread");
+    } else {
+        //console.log("switch to read");
+        book.target.classList.remove("unread");
+        book.target.classList.add("read");
+    }
+
+    //update the book array
+    let bookCard = book.target.parentElement;
+    console.log(bookCard.dataset.bookNumber);
+    let bookToChange = bookArray[bookCard.dataset.bookNumber];
+    console.log(bookToChange);
+    bookToChange.changeReadStatus();
+    //bookArray[bookCard.dataset.bookNumber].changeReadStatus;
+}
+
+//function to update the DOM object references
+//I think this will be necessary if we delete an object
+const updateDOMListeners = function() {
+    let changeStatusButton = document.querySelectorAll(".change-status");
+
+    changeStatusButton.forEach((button) => {
+        button.addEventListener("click", toggleReadStatus);
+    })
+}
+
+
+updateDOMListeners();
+
+
+
 
 
 //add a new book using the values from the input fields
