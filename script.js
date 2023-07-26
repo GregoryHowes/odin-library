@@ -48,12 +48,6 @@ addBookToDisplay(bookArray[2]);
 bookArray.push(new Book("1Q84", "Murakami Haruki", 928, 2011, true));
 addBookToDisplay(bookArray[3]);
 
-//test changeReadStatus
-bookArray[0].changeReadStatus();
-
-
-
-
 //fetch modal input field values
 //these will need to be validated
 const modalBookTitle = document.querySelector("#booktitle");
@@ -201,7 +195,9 @@ const addBook = function () {
                                         modalBookPages.value,
                                         modalBookDate.value, 
                                         modalBookReadStatus.checked);
+    bookArray.push(newBookFromModal);
     addBookToDisplay(newBookFromModal);
+    updateDOMListeners();
 }
 newBookButton.addEventListener("click", addBook);
 
