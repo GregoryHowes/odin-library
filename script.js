@@ -40,13 +40,13 @@ const bookCards = document.querySelector(".books");
 //create array of books and add to the DOM
 let bookArray = [];
 bookArray.push(new Book("The Hobbit", " J.R. Tolkien", 295, 1937, false));
-addBookToDisplay(bookArray[0]);
+//addBookToDisplay(bookArray[0]);
 bookArray.push(new Book("1984", "George Orwell", 328, 1949, false));
-addBookToDisplay(bookArray[1]);
+//addBookToDisplay(bookArray[1]);
 bookArray.push(new Book("Romeo and Juliet", "William Shakepeare", 480, 1597, true));
-addBookToDisplay(bookArray[2]);
+//addBookToDisplay(bookArray[2]);
 bookArray.push(new Book("1Q84", "Murakami Haruki", 928, 2011, true));
-addBookToDisplay(bookArray[3]);
+//addBookToDisplay(bookArray[3]);
 
 //fetch modal input field values
 //these will need to be validated
@@ -62,12 +62,12 @@ const modalBookReadStatus = document.querySelector("#readtoggle");
 //the problem with the is that I can't find a way to access the array index of each book object
 //EDIT - Just need to do the old fashioned for i=0, i<len, i++ method!!
 const addBooksToDomFromArray = function () {
-    bookArray.forEach((book) => {
-        addBookToDisplay(book);
-    });
+    for (let i=0; i < bookArray.length ; i ++) {
+        addBookToDisplay(bookArray[i]);
+    }
 }
 
-//addBooksToDomFromArray();
+addBooksToDomFromArray();
 
 //add book object to dom
 function addBookToDisplay (bookObject) {
@@ -80,7 +80,8 @@ function addBookToDisplay (bookObject) {
     newBookCard.classList.add("card");
     
     //add data element to correspond to array position
-    newBookCard.dataset.bookNumber = bookArray.length -1;
+    //newBookCard.dataset.bookNumber = bookArray.length -1;
+    newBookCard.dataset.bookNumber = bookCards.childElementCount;
 
     //add book title
     const bookTitle = document.createElement("p");
@@ -126,6 +127,7 @@ function addBookToDisplay (bookObject) {
     //create delete button
     const deleteButton = document.createElement("button");
     deleteButton.id = "remove-book";
+    deleteButton.classList.add("remove-book");
     deleteButton.classList.add("button");
     deleteButton.innerText = "Remove";
     //add delete button to book card
@@ -170,13 +172,31 @@ const toggleReadStatus = function(book) {
     //bookArray[bookCard.dataset.bookNumber].changeReadStatus;
 }
 
+const deleteBook = function (book) {
+    let bookCard = book.target.parentElement;
+    console.log(bookCard.dataset.bookNumber);
+    //remove book from array
+    bookArray.splice(bookCard.dataset.bookNumber, 1);
+    //There must be a better way to do this
+    //clear the bookCards DOM element
+    bookCards.innerHTML = "";
+    //recreate the DOM to represent the new array structure
+    addBooksToDomFromArray();
+    updateDOMListeners();
+}
+
 //function to update the DOM object references
 //I think this will be necessary if we delete an object
 const updateDOMListeners = function() {
     let changeStatusButton = document.querySelectorAll(".change-status");
+    let deleteBookButton = document.querySelectorAll(".remove-book");
 
     changeStatusButton.forEach((button) => {
         button.addEventListener("click", toggleReadStatus);
+    })
+
+    deleteBookButton.forEach((button) => {
+        button.addEventListener("click", deleteBook);
     })
 }
 
