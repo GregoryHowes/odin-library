@@ -1,3 +1,12 @@
+//fetch modal input field values
+//these will need to be validated
+const modalBookTitle = document.querySelector("#booktitle");
+const modalBookAuthor = document.querySelector("#bookauthor");
+const modalBookPages = document.querySelector("#bookpages");
+const modalBookDate = document.querySelector("#bookdate");
+const modalBookReadStatus = document.querySelector("#readtoggle");
+
+
 //----------------------------------------------------------
 //Modal stuff for adding new book
 const modal = document.querySelector(".modal");
@@ -8,6 +17,7 @@ const closeModalBtn = document.querySelector(".btn-close");
 const openModal = function () {
     modal.classList.remove("hidden");
     overlay.classList.remove("hidden");
+    modalBookTitle.focus();
 }
 openModalBtn.addEventListener("click", openModal);
 
@@ -47,16 +57,6 @@ bookArray.push(new Book("Romeo and Juliet", "William Shakepeare", 480, 1597, tru
 //addBookToDisplay(bookArray[2]);
 bookArray.push(new Book("1Q84", "Murakami Haruki", 928, 2011, true));
 //addBookToDisplay(bookArray[3]);
-
-//fetch modal input field values
-//these will need to be validated
-const modalBookTitle = document.querySelector("#booktitle");
-const modalBookAuthor = document.querySelector("#bookauthor");
-const modalBookPages = document.querySelector("#bookpages");
-const modalBookDate = document.querySelector("#bookdate");
-const modalBookReadStatus = document.querySelector("#readtoggle");
-
-
 
 
 //the problem with the is that I can't find a way to access the array index of each book object
@@ -218,6 +218,14 @@ const addBook = function () {
     bookArray.push(newBookFromModal);
     addBookToDisplay(newBookFromModal);
     updateDOMListeners();
+
+    //reset modal fields ready for next input
+    modalBookTitle.value = "";
+    modalBookAuthor.value = "";
+    modalBookPages.value = "";
+    modalBookDate.value = "";
+    modalBookReadStatus.checked = false;
+
 }
 newBookButton.addEventListener("click", addBook);
 
