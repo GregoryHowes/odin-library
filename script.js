@@ -29,12 +29,24 @@ closeModalBtn.addEventListener("click", closeModal);
 //----------------------------------------------------------
 
 //create book object
+/*
 function Book (title, author, pages, date, read) {
     this.title = title
     this.author = author
     this.pages = pages
     this.date = date
     this.read = read
+}
+*/
+class Book {
+    constructor(title, author, pages, date, read) {
+        this.title = title;
+        this.author = author;
+        this.pages = pages;
+        this.date = date;
+        this.read = read;
+    }
+
 }
 
 //prototype function on Book object to toggle the read status
